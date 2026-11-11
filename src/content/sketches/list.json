@@ -1,0 +1,17 @@
+[
+  {
+    "id": "1",
+    "image": "/cat.jpg",
+    "alt": "Boceto 1"
+  },
+  {
+    "id": "2",
+    "image": "cat2.jpg",
+    "alt": "Boceto 2"
+  },
+  {
+    "id": "3",
+    "image": "cat3.jpg",
+    "alt": "Boceto 2"
+  }
+]

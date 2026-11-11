@@ -1,0 +1,106 @@
+---
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(entry => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{entry.data.title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --card-bg: #ffffff;
+      --text-main: #333333;
+      --text-muted: #888888;
+      --accent-blue: #70d6ff;
+      --border-color: #f0ede6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      padding: 40px 20px;
+      line-height: 1.8;
+    }
+    .post-container {
+      max-width: 750px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-color);
+    }
+    .back-link {
+      display: inline-block;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 25px;
+      font-size: 0.9rem;
+    }
+    .tag {
+      display: inline-block;
+      background: var(--accent-blue);
+      color: #ffffff;
+      padding: 3px 12px;
+      border-radius: 15px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+    }
+    .post-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+    .featured-img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 25px;
+      object-fit: cover;
+      max-height: 400px;
+    }
+    .post-content {
+      font-size: 1.05rem;
+      color: #444444;
+    }
+  </style>
+</head>
+<body>
+  <main class="post-container">
+    <a href="/" class="back-link">← Volver al inicio</a>
+    
+    {entry.data.category && <span class="tag">{entry.data.category}</span>}
+    
+    <h1>{entry.data.title}</h1>
+    <div class="post-date">{entry.data.date}</div>
+
+    {entry.data.image && <img src={entry.data.image} alt={entry.data.title} class="featured-img" />}
+
+    <div class="post-content">
+      <Content />
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,666 @@
+---
+import { getCollection } from 'astro:content';
+import sketchList from '../content/sketches/list.json';
+import kanjiOfTheDay from '../content/kanji/dia.json'; // <-- Importación directa de tu JSON de kanji
+
+// Obtiene automáticamente todos los posts de la carpeta src/content/posts
+const posts = await getCollection('posts');
+
+// Extrae las categorías únicas de tus posts dinámicos
+const categories = ["Todas", ...new Set(posts.map(post => post.data.category))];
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>何もないよ! 私の日常 & 日本語ノート</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    /* ESTILOS PARA LA VENTANA FLOTANTE (MODAL) */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+}
+
+.modal-close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: #ffffff;
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Permitir que el boceto parezca clickeable */
+.sketch-item {
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.sketch-item:hover {
+  opacity: 0.9;
+}
+    :root {
+      --bg: #faf9f6;
+      --card-bg: #ffffff;
+      --text-main: #333333;
+      --text-muted: #888888;
+      --accent-sakura: #f8c8d8;
+      --accent-purple: #a594f9;
+      --accent-blue: #70d6ff;
+      --border-color: #f0ede6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* BANNER SUPERIOR */
+    .hero-banner {
+  position: relative;
+  width: 100%;
+  /* Usa aspect-ratio en lugar de una altura fija. 
+     Esto hace que el banner mantenga una proporción perfecta de ancho y alto 
+     sin importar si la pantalla es gigante o pequeña */
+  aspect-ratio: 16 /7; /* Puedes probar 16/5 si lo quieres más alto, o 16/7 si lo quieres más bajito */
+  min-height: 300px;
+  background-image: url('/banner.jpg');
+  background-size: cover;
+  background-position: center 35%;
+}
+
+    .container {
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* HEADER Y AVATAR */
+    .profile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 25px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .site-title h1 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.9rem;
+      color: var(--text-main);
+    }
+
+    .site-title p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .avatar-wrapper {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ESTRUCTURA DE 2 COLUMNAS (SIDEBAR A LA DERECHA) */
+    .layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 30px;
+    }
+
+    /* CONTENEDOR EN GRID TIPO POLAROID (2 COLUMNAS DE TARJETAS) */
+    .posts-feed {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* TARJETA TIPO POLAROID */
+    .post-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    /* MARCO DE LA FOTO POLAROID */
+    .polaroid-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: #f0f0f0;
+    }
+
+    .polaroid-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: right;
+      margin-bottom: 6px;
+    }
+
+    .post-card h2 {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+
+    .post-card h2 a {
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .tag {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--accent-blue);
+      color: #ffffff;
+      padding: 3px 12px;
+      border-radius: 15px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    /* BARRA LATERAL CON WIDGETS */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .widget {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .widget-title {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 1.05rem;
+      margin-bottom: 12px;
+      color: var(--text-main);
+      border-bottom: 2px solid #f4eff7;
+      padding-bottom: 6px;
+    }
+
+    .category-list { list-style: none; }
+
+    .category-list li a {
+      display: block;
+      padding: 6px 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .category-list li a:hover, .category-list li a.active-cat {
+      background: #f4eff7;
+      color: var(--accent-purple);
+      font-weight: 600;
+      padding-left: 14px;
+    }
+
+    .kanji-box {
+      text-align: center;
+      background: #faf6f8;
+      border-radius: 12px;
+      padding: 15px;
+      border: 1px dashed var(--accent-sakura);
+    }
+
+    .kanji-char {
+      font-family: 'Noto Serif JP', serif;
+      font-size: 3rem;
+      color: var(--accent-purple);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .kanji-info {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-align: left;
+      margin-top: 8px;
+    }
+
+    /* ESTILOS PARA EL CARRUSEL DE BOCETOS */
+.sketch-carousel-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sketch-grid {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Ocultar barra en Firefox */
+  -ms-overflow-style: none; /* Ocultar barra en IE/Edge */
+  width: 100%;
+  padding-bottom: 4px;
+}
+
+.sketch-grid::-webkit-scrollbar {
+  display: none; /* Ocultar barra en Chrome/Safari */
+}
+
+.sketch-item {
+  flex: 0 0 100%; /* Muestra una imagen grande por vez dentro del widget, o ajustalo si prefieres ver dos */
+  aspect-ratio: 1;
+  background: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  scroll-snap-align: start;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.sketch-item:hover {
+  opacity: 0.9;
+}
+
+.sketch-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Botones de navegación del carrusel */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  color: #333;
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.carousel-btn:hover {
+  background: #ffffff;
+}
+
+.carousel-btn-prev {
+  left: -8px;
+}
+
+.carousel-btn-next {
+  right: -8px;
+}
+    .sketch-item {
+      aspect-ratio: 1;
+      background: #eee;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .sketch-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 850px) {
+      .layout-grid { grid-template-columns: 1fr; }
+      .posts-feed { grid-template-columns: 1fr; }
+    }
+    .banner-wrapper {
+  position: relative;
+  width: 100%;
+  height: 240px;
+ border: none;
+}
+.banner-wrapper, .hero-banner, .banner-cloud-bottom {
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.hero-banner {
+  width: 100%;
+  height: 100%;
+  background-image: url('/banner.jpg');
+  background-size: cover;
+  background-position: center 35%;
+}
+
+/* CONTENEDOR Y COLOR DE LAS NUBES */
+.cloud-divider {
+  position: absolute;
+  bottom: -2px; /* Evita pequeñas líneas blancas de separación */
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  pointer-events: none;
+}
+
+.cloud-divider svg {
+  width: 100%;
+  height: 45px; /* Altura de las nubes en la parte inferior */
+  color: var(--bg); /* Aquí puedes cambiar por el color de fondo de tu web, ej: #faf9f6 o #ffffff */
+}
+.banner-wrapper {
+  position: relative;
+  width: 100%;
+  height: 300px; /* Altura de tu banner */
+}
+
+
+
+.banner-cloud-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 2;
+  overflow: hidden; /* Evita cualquier desborde extraño */
+}
+
+.banner-cloud-bottom svg {
+  display: block;
+  width: 100%;
+  height: 200px; /* Puedes probar subiendo a 70px u 80px si quieres que se vean más grandes y redonditas al expandir */
+}
+
+/* Color de relleno idéntico al fondo de tu blog (--bg: #faf9f6) */
+.cloud-fill {
+  fill: var(--bg); 
+}
+
+/* Contorno en tono marrón claro / beige estético */
+.cloud-stroke {
+  fill: none;
+  stroke: #d4bda8; /* Un tono marrón claro / beige cálido. Puedes ajustarlo a tu gusto (ej: #c5b39c) */
+  stroke-width: 3px; /* Grosor delicado y bonito */
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+  </style>
+</head>
+<!-- MODAL DE IMAGEN -->
+<div class="modal-overlay" id="sketchModal">
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal">&times;</button>
+    <img id="modalImg" src="" alt="Boceto ampliado" />
+  </div>
+</div>
+<body>
+
+  
+
+  <!-- BANNER SUPERIOR CON NUBES -->
+<div class="banner-wrapper">
+  <header class="hero-banner">
+    
+    <!-- AQUÍ DENTRO VAN LAS NUBES (JUSTO ANTES DE CERRAR EL HEADER) -->
+    <div class="banner-cloud-bottom">
+     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax meet">
+        <!-- 1. RELLENO DE LA NUBE -->
+        <path d="M 0,60 
+                 A 60,60 0 0,1 130,75 
+                 A 80,80 0 0,1 225,85 
+                 A 70,70 0 0,1 360,115 
+                 L 365,117
+                 A 85,85 0 0,1 525,100 
+                 A 40,40 0 0,1 585,98 
+                 A 50,50 0 0,1 680,105 
+                 A 80,80 0 0,1 845,95 
+                 A 85,85 0 0,1 985,110 
+                 A 110,110 0 0,1 1200,80 
+                 L 1200,150 
+                 L 0,150 Z" class="cloud-fill"></path>
+
+        <!-- 2. LÍNEA DE CONTORNO (STROKE) -->
+        <path d="M 0,60 
+                 A 60,60 0 0,1 130,75 
+                 A 80,80 0 0,1 225,85 
+                 A 70,70 0 0,1 360,115 
+                 L 365,117
+                 A 85,85 0 0,1 525,100 
+                 A 40,40 0 0,1 585,98 
+                 A 50,50 0 0,1 680,105 
+                 A 80,80 0 0,1 845,95 
+                 A 85,85 0 0,1 985,110 
+                 A 110,110 0 0,1 1200,80" class="cloud-stroke"></path>
+      </svg>
+    </div>
+
+  </header> <!-- Cierre correcto del header -->
+</div>
+  <main class="container">
+    <div class="profile-header">
+      <div class="site-title">
+        <h1>何もないよ! 私の日常 & 日本語ノート</h1>
+        <p>Notas de estudio, vivencias, bocetos y manualidades</p>
+      </div>
+
+      <div class="avatar-wrapper">
+        <img src="/avatar.png" alt="Foto de Perfil" />
+      </div>
+    </div>
+
+    <div class="layout-grid">
+      <!-- SECCIÓN PRINCIPAL: PUBLICACIONES POLAROID DINÁMICAS -->
+      <section class="posts-feed" id="posts-container">
+        {posts.map(post => (
+          <article class="post-card" data-category={post.data.category}>
+            <!-- FOTO DE LA POLAROID -->
+            <div class="polaroid-image">
+              <img src={post.data.image} alt={post.data.title} />
+            </div>
+
+            <!-- FECHA ARRIBA A LA DERECHA -->
+            <div class="post-date">{post.data.date}</div>
+
+            <!-- TÍTULO (enlace dinámico usando post.id) -->
+            <h2><a href={`/posts/${post.id}`}>{post.data.title}</a></h2>
+
+            <!-- ETIQUETA / CATEGORÍA AL FINAL -->
+            <span class="tag">{post.data.category}</span>
+          </article>
+        ))}
+      </section>
+
+      <!-- BARRA LATERAL DERECHA -->
+      <aside class="sidebar">
+        <!-- CATEGORÍAS -->
+        <div class="widget">
+          <h3 class="widget-title">Categorías</h3>
+          <ul class="category-list" id="category-filters">
+            {categories.map((cat, index) => (
+              <li>
+                <a href="#" data-category={cat} class={index === 0 ? "active-cat" : ""}>
+                  {cat}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- KANJI DEL DÍA -->
+<div class="widget">
+  <h3 class="widget-title">今日の漢字 (Kanji)</h3>
+  <div class="kanji-box">
+    <div class="kanji-char">{kanjiOfTheDay.kanji}</div>
+    <strong>{kanjiOfTheDay.meaning}</strong>
+    <div class="kanji-info">
+      <p><strong>Onyomi:</strong> {kanjiOfTheDay.onyomi}</p>
+      <p><strong>Kunyomi:</strong> {kanjiOfTheDay.kunyomi}</p>
+      <p><strong>Ejemplo:</strong> {kanjiOfTheDay.example}</p>
+    </div>
+  </div>
+</div>
+
+<!-- SKETCHES DINÁMICOS EN CARRUSEL -->
+<div class="widget">
+  <h3 class="widget-title">Bocetos / Sketches</h3>
+  <div class="sketch-carousel-container">
+    <button class="carousel-btn carousel-btn-prev" id="prevSketch">&#10094;</button>
+    
+    <div class="sketch-grid" id="sketchGrid">
+      {sketchList.map(sketch => (
+        <div class="sketch-item sketch-trigger" data-img={sketch.image}>
+          <img src={sketch.image} alt={sketch.alt} />
+        </div>
+      ))}
+    </div>
+
+    <button class="carousel-btn carousel-btn-next" id="nextSketch">&#10095;</button>
+  </div>
+</div>
+      </aside>
+    </div>
+  </main>
+  <script lang="ts">
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterButtons = document.querySelectorAll('#category-filters a');
+      const postCards = document.querySelectorAll('.post-card');
+
+      filterButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+          e.preventDefault();
+          const selectedCategory = button.getAttribute('data-category');
+
+          postCards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            if (selectedCategory === 'Todas' || cardCategory === selectedCategory) {
+              card.style.display = 'flex';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          filterButtons.forEach(btn => btn.classList.remove('active-cat'));
+          button.classList.add('active-cat');
+        });
+      });
+    });
+    // Lógica para el modal de sketches
+  const modal = document.getElementById('sketchModal');
+  const modalImg = document.getElementById('modalImg');
+  const closeModal = document.getElementById('closeModal');
+  const sketchTriggers = document.querySelectorAll('.sketch-trigger');
+
+  sketchTriggers.forEach(item => {
+    item.addEventListener('click', () => {
+      const imgSrc = item.getAttribute('data-img');
+      modalImg.src = imgSrc;
+      modal.style.display = 'flex';
+    });
+  });
+
+  const hideModal = () => {
+    modal.style.display = 'none';
+    modalImg.src = '';
+  };
+
+  closeModal.addEventListener('click', hideModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) hideModal();
+  });
+  // Lógica para el carrusel de sketches
+  const sketchGrid = document.getElementById('sketchGrid');
+  const prevBtn = document.getElementById('prevSketch');
+  const nextBtn = document.getElementById('nextSketch');
+
+  if (sketchGrid && prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      sketchGrid.scrollBy({ left: -sketchGrid.clientWidth, behavior: 'smooth' });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      sketchGrid.scrollBy({ left: sketchGrid.clientWidth, behavior: 'smooth' });
+    });
+  }
+  </script>
+</body>
+</html>
