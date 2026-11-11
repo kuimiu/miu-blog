@@ -2,7 +2,7 @@
 title: "Hola de nuevo"
 date: "2026-11-11"
 category: "Diario 日記"
-image: "/public/5 sin título_20261111172948.jpg"
+image: "/5 sin título_20261111172948.jpg"
 summary: "Hola de nuevo"
 ---
 
@@ -13,20 +13,3 @@ En conclusión hago esto para tener un pequeño escape, para no lidiar tanto con
 Si alguien lee esto me disculpo que tuviera que leerlo 🤣 no soy precisamente una profesional en redacción, pero también pienso trabajar en ello y precisamente por lo mismo no quise ayudarme aquí con la IA salvo para la ortografía aunque usaré una web especial para eso, también no quiero que por lo que escribí pienses que odio a la gente o algo así, pero sí que trato de establecer mis límites tú decidirás si eso te gusta o no.
 Bueno nos vemos en una siguiente entrada.
 またね！
-
-<div style="text-align: center; margin: 20px 0;">
-  <img src="/colab.png" alt="Mi imagen" style="max-width: 100%; height: auto; border-radius: 12px; display: inline-block;" />
-</div>
-
-Puedes visitar la [documentación oficial de Astro](https://astro.build) para ver más trucos.
-
-Aquí te comparto un video interesante:
-
-<iframe 
-  width="100%" 
-  height="315" 
-  src="https://www.youtube.com/embed/MJDvidrr4m8" 
-  title="YouTube video player" 
-  frameborder="0" 
-  allowfullscreen>
-</iframe>
