@@ -1,12 +1,19 @@
 ---
-title: "Diario"
-date: "2026-11-07"
-category: "Diario"
-image: "/cat.jpg"
-summary: "Hoy probé agregando enlaces y videos a mi entrada."
+title: "Hola de nuevo"
+date: "2026-11-11"
+category: "Diario 日記"
+image: "/public/5 sin título_20261111172948.jpg"
+summary: "Hola de nuevo"
 ---
 
-¡Hola! Hoy estuve aprendiendo a personalizar más mis entradas. 
+Hola, estoy aquí de nuevo en internet, decidí crear este blog para colocar varias cosas que me gustan en él para tener algo así como un diario donde poder derramar mis pensamientos y las cosas que me pasan a diario sin tener un montón de espectadores que juzguen y solo compartirlo conmigo o algunos pocos de mi absoluta confianza(casi nadie) y no sé alguien que se tope con él nadie conocido algo impersonal para mantener algo de anonimato supongo, y otro que no quiero que me estén preguntando cosas todo el tiempo sobre mi vida, no me gusta, a veces solo quiero decir “me paso esto” pero sin necesidad de que haya alguien que responda si no necesito su opinión en ese momento, la realidad es que platicar no me gusta mucho😅 especialmente con gente que no entiende lo que hago o le parece estúpido o gente que conozco de algunos lugares ya sabes trabajo, universidad, colegio etc. lo que más detesto es que me salgan sugerencias de amistad en una cuenta que quiero mantener solo para comunicarme con gente de otros lugares más lejanos o para mis dibujos y proyecto PRIVADOS y el face y él insta una y otra vez insisten en mostrar eso y yo así como:-No, NO! ¡No quiero que esta gente se entere de lo que hago en privado es algo personal para MÍ! Yo sé que las personas de por estos lados les gusta que se enteren de toda su vida, pero a mí no me gusta eso y es triste porque no respetan ni entienden esta parte o sea a mí no me importa un carajo sus vidas, déjenme en paz a mí y piensen lo que quieran sobre mí mientras están por allá donde ni a mí ni al fucking universo le importa, a otra cosa lo hago así porque así puedo escribir palabrotas con más tranquilidad (mucha gente piensa que eso no es propio de mi jajaja no me conocen, pero debo mantener una apariencia apropiada y educado para ciertos sectores).
+También es una manera de tener algo más personalizado como en antaño; extraño un poco eso, ya que todo se ve demasiado uniforme últimamente e invasivo todo te pide tu información personal hasta hacer este blog se me complicó un poco por ello, ahora tampoco mentiré este blog lo hice ayudándome con una IA porque tal vez puedo aprender algo de ello, tal vez me sea útil ahora en este momento yo no me siento como la gran programadora buena parte lo hizo la IA, pero me ayudaba que me explicaba por qué al poner y mover una cosa pasaba otra no termino de comprenderlo del todo cómo funcionan las cosas, pero siguiendo paso a paso logre hacer este blog, y me hizo pensar en un futuro estudiar esto más detenidamente así que la IA no está del todo mal a pesar de que técnicamente por ella perdí mi trabajo. 😅
+Si, el tiempo que logre obtener para hacer este blog fue por mi reciente despido hace un poco más de un mes, tengo sentimientos encontrados sobre esto, por un lado, tengo más tiempo puedo relajarme y hacer este tipo de cosas, por otro no tengo el dinero que desearía para hacer otras cosas, quizás me extienda un poco más sobre esto en otra entrada.
+En conclusión hago esto para tener un pequeño escape, para no lidiar tanto con tantas cosas y gente que me abruma tal vez para por fin lograr cosas que me han sido difíciles de alcanzar y ordenar mis pensamientos por fin. 
+Si alguien lee esto me disculpo que tuviera que leerlo 🤣 no soy precisamente una profesional en redacción, pero también pienso trabajar en ello y precisamente por lo mismo no quise ayudarme aquí con la IA salvo para la ortografía aunque usaré una web especial para eso, también no quiero que por lo que escribí pienses que odio a la gente o algo así, pero sí que trato de establecer mis límites tú decidirás si eso te gusta o no.
+Bueno nos vemos en una siguiente entrada.
+またね！
+
 <div style="text-align: center; margin: 20px 0;">
   <img src="/colab.png" alt="Mi imagen" style="max-width: 100%; height: auto; border-radius: 12px; display: inline-block;" />
 </div>
