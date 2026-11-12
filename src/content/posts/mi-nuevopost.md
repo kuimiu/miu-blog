@@ -2,7 +2,7 @@
 title: "日本語のテストがありました"
 date: "2026-11-11"
 category: "日本語"
-image: "/avatar.png"
+image: "/nihongo (1).jpg"
 summary: "primera entrada de verdad en japones"
 ---
 
