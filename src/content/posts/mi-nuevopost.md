@@ -11,4 +11,6 @@ Aqui escribire mayoritariamente en japones pero hoy solo me extendere un poquito
 <p style="text-align: justify;">
 Encontrare la manera que esto me ayude a mejorar en el idioma asi que apartir de aqui escribire en japones.
 </p>
-今日は日本語のテストがありました。勉強していません😅 でも、テストは少し簡単です。口頭試験の成績が悪かったので、もっと勉強しなければなりません。
+<p style="text-align: justify;">
+##今日は日本語のテストがありました。勉強していません😅 でも、テストは少し簡単です。口頭試験の成績が悪かったので、もっと勉強しなければなりません。
+</p>
