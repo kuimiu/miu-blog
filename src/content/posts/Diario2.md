@@ -12,4 +12,4 @@ mas tarde cuando pasemos a recoger a mi hermana, veremos ya algunos articulos na
 
 Mañana por cierto me condenare un poco por que tome un pequeño trabajito de hacer una revista pero con el tiempo libre que tengo ahorita puede que me vaya bien eso espero.
 
-## **またね！😺**
+## **またね!**
