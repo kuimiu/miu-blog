@@ -1,5 +1,5 @@
 ---
-title: "corte de cabello"
+title: "Hoy hice un corte de cabello"
 date: "2026-11-11"
 category: "Diario 日記"
 image: "/corte.jpg"
