@@ -10,11 +10,12 @@ Hola, estoy aquí de nuevo en internet, decidí crear este blog para colocar var
 </p>
 <p style="text-align: justify;">
 También es una manera de tener algo más personalizado como en antaño; extraño un poco eso, ya que todo se ve demasiado uniforme últimamente e invasivo todo te pide tu información personal hasta hacer este blog se me complicó un poco por ello, ahora tampoco mentiré este blog lo hice ayudándome con una IA porque tal vez puedo aprender algo de ello, tal vez me sea útil ahora en este momento yo no me siento como la gran programadora buena parte lo hizo la IA, pero me ayudaba que me explicaba por qué al poner y mover una cosa pasaba otra no termino de comprenderlo del todo cómo funcionan las cosas, pero siguiendo paso a paso logre hacer este blog, y me hizo pensar en un futuro estudiar esto más detenidamente así que la IA no está del todo mal a pesar de que técnicamente por ella perdí mi trabajo. 😅
+</p>
 Si, el tiempo que logre obtener para hacer este blog fue por mi reciente despido hace un poco más de un mes, tengo sentimientos encontrados sobre esto, por un lado, tengo más tiempo puedo relajarme y hacer este tipo de cosas, por otro no tengo el dinero que desearía para hacer otras cosas, quizás me extienda un poco más sobre esto en otra entrada.
 En conclusión hago esto para tener un pequeño escape, para no lidiar tanto con tantas cosas y gente que me abruma tal vez para por fin lograr cosas que me han sido difíciles de alcanzar y ordenar mis pensamientos por fin. 
 Si alguien lee esto me disculpo que tuviera que leerlo 🤣 no soy precisamente una profesional en redacción, pero también pienso trabajar en ello y precisamente por lo mismo no quise ayudarme aquí con la IA salvo para la ortografía aunque usaré una web especial para eso, también no quiero que por lo que escribí pienses que odio a la gente o algo así, pero sí que trato de establecer mis límites tú decidirás si eso te gusta o no.
 Bueno nos vemos en una siguiente entrada.
-</p>
+
  <div style="text-align: center;">
 
   ## またね！
