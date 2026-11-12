@@ -13,7 +13,7 @@ Si, el tiempo que logre obtener para hacer este blog fue por mi reciente despido
 En conclusión hago esto para tener un pequeño escape, para no lidiar tanto con tantas cosas y gente que me abruma tal vez para por fin lograr cosas que me han sido difíciles de alcanzar y ordenar mis pensamientos por fin. 
 Si alguien lee esto me disculpo que tuviera que leerlo 🤣 no soy precisamente una profesional en redacción, pero también pienso trabajar en ello y precisamente por lo mismo no quise ayudarme aquí con la IA salvo para la ortografía aunque usaré una web especial para eso, también no quiero que por lo que escribí pienses que odio a la gente o algo así, pero sí que trato de establecer mis límites tú decidirás si eso te gusta o no.
 Bueno nos vemos en una siguiente entrada.
-        </p>
+</p>
  <div style="text-align: center;">
 
   ## またね！
