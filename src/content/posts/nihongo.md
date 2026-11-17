@@ -2,9 +2,10 @@
 title: "avance"
 date: "2026-11-17"
 category: "日本語"
-image:"/https://github.com/user-attachments/assets/046b2a07-eb21-454a-bbb0-ff9a33f0dadf"
-summary: "日本語を学ぶための、この新しいそうなツールを見つけました"
+image: "https://github.com/user-attachments/assets/..."
+summary: "日本語を学ぶための、この新しいそうなツール..."
 ---
+
 
 昨日​、Ankiというアプリを見つけました。新しい言葉を覚えるのに役立ちます。このツールはちょっと使いづらいです。でも、少しずつわかってきました。
 
