@@ -1,9 +1,9 @@
 ---
-title: "avance"
+title: "日本語を学ぶための、この新しいそうなツールを見つけました。"
 date: "2026-11-17"
 category: "日本語"
 image: "https://github.com/user-attachments/assets/..."
-summary: "日本語を学ぶための、この新しいそうなツール..."
+summary: "avances"
 ---
 
 
