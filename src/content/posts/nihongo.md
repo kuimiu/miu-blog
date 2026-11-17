@@ -1,5 +1,5 @@
 ---
-title: "avance1"
+title: "avance"
 date: "2026-11-17"
 category: "日本語"
 image:"/https://github.com/user-attachments/assets/046b2a07-eb21-454a-bbb0-ff9a33f0dadf"
