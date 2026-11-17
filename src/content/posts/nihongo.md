@@ -2,8 +2,7 @@
 title: "日本語を学ぶための、この新しいそうなツールを見つけました。"
 date: "2026-11-17"
 category: "日本語"
-image:
-"https://github.com/user-attachments/assets/b905ce69-3f76-4118-97ab-9fa8b03b5d02"
+image: "[https://github.com/user-attachments/assets/b905ce69-3f76-4118-97ab-9fa8b03b5d02](https://github.com/user-attachments/assets/b905ce69-3f76-4118-97ab-9fa8b03b5d02)"
 summary: "avances"
 ---
 
