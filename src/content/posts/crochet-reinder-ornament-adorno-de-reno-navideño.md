@@ -24,6 +24,6 @@ Hello again! How are you? Well, I'd like to introduce you to this little guy; it
 
 This website is really nice, and if you subscribe, they give you some great free patterns in your email. Now, honestly, I didn't follow the pattern 100%, since I have some yarn and materials there that I want to use up because they've been there for a long time. Before buying new ones, I need to use these up because I don't have much space for things right now, and I also think that if I have the stuff... well, I should use it, right?  😅 I've been trying to remember how to make a magic ring and how to make invisible knots, for which I'll use a Russian method I saw somewhere in the future. I also noticed that classic decreases for amigurumi leave little holes, so I started using invisible decreases. This whole process of remembering, making mistakes, and not being able to see the stitches very well (mind you, my eyesight isn't bad, but sometimes with small details like the cherry, it's hard to see where the stitches go) took me three days, haha. So I'm really considering whether I want to make the rest of the decorations. 😹 I'll try to make them, but I don't know if I'll have the time... or if my hands will hold up because they hurt! 😿 People don't understand that sometimes these kinds of things can be exhausting and more complex. In the next post, I'll write more about the processes and the things I want to remember so I don't forget all these steps and can refer to them whenever I want.
 
-![](/images/1000100615.jpg)
+![](/images/1000100625.jpg)
 
 またね！❤️😺
